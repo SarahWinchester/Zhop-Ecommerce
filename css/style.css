@@ -12,7 +12,7 @@ body{
     color:  rgb(57, 239, 66);
     font-size: 2rem;
     font-family: 'Amatic SC', cursive;
-    text-shadow:5px 5px 5px black;
+    text-shadow:5px 5px 5px rgb(9, 255, 9);
  }
  .fontnavbar{
     font-size: 1.5rem;
@@ -27,7 +27,9 @@ body{
 }
 /*DEBUG must add this to the navbar-collapse but, just in md and  mobile, using medias?*/
 .dropdown-item{
-    background-color: #3b0839b6
+    background-color: #ff0baeb6;
+    font-size: 2rem;
+    font-weight: bold;
 }
 .dropdown-menu{
     font-size: 1.3rem;
