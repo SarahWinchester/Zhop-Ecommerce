@@ -59,3 +59,5 @@ function mainShow() {
         //Aqui debo esconder la data anterior que esta por default en la pagina en cada uno de los else.
     })
 }; 
+
+let templateCard = ``
