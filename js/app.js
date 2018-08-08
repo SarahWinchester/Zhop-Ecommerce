@@ -1,35 +1,48 @@
 //search Function
-
+$(document).ready(function(){
     $("#search-btn").click(function(){
         let inputSearchVal = $("#search-input").val();
         console.log(inputSearchVal);
-        // mercado(inputSearchVal);
-        // searchingRequest(inputSearchVal);
+        searchingRequest(inputSearchVal);
     })
-// })
-// const mercado = () => {
-//     $.ajax({
-//         url: `https://api.mercadolibre.com/sites/MLA/search?q=goth`,
-//         type: 'GET',
-//         crossDomain: true,
-//         datatype: 'json',
-//         success: function (response) {
-//             for (var i = 0; i <= 5; i++) {
-//                 var photo = response.results[i].thumbnail;
-//                 console.log(photo);
-//             }
-//         }
-//     })
-// }
-                //Function for the API for the seach 
-                // function searchingRequest(inputSearchVal) { 
-                //     let getsearchingUrl = "https://api.mercadolibre.com/sites/MLM/search?q="+ inputSearchVal;
-                //     $.ajax({
-                //         url: getsearchingUrl,
-                //         type: "GET",
-                //         crossDomain: true,
-                //     }).done(function(response) {
-                //         console.log(response);
-                //     })
-                // }; 
-                
+})
+//category calls
+$(".category").click(function(event){
+    console.log(event.target.id);
+    let eventTarget = event.target.id;
+    if (event.target.id == "gothic") {
+        categoryRequest("goth");
+        console.log("entro goth");
+    }else if (event.target.id == "cybergoth"){
+        categoryRequest("cybergoth");
+        console.log("entro cybergoth");
+    }else if(event.target.id == "steampunk"){
+        categoryRequest("steampunk");
+    }
+    
+})
+
+//Function for the API for the seach 
+function searchingRequest(inputSearchVal) { 
+    let getsearchingUrl = "https://api.mercadolibre.com/sites/MLM/search?q="+ inputSearchVal;
+    $.ajax({
+        url: getsearchingUrl,
+        type: "GET",
+        crossDomain: true,
+    }).done(function(response) {
+        console.log(response);
+    })
+}; 
+
+//Function for the category
+function categoryRequest(categorySelected) { 
+    let getsearchingUrlCategory = "https://api.mercadolibre.com/sites/MLM/search?q="+ categorySelected;
+    $.ajax({
+        url: getsearchingUrlCategory,
+        type: "GET",
+        crossDomain: true,
+    }).done(function(responseCategory) {
+        console.log(responseCategory);
+        //Aqui debo esconder la data anterior que esta por default en la pagina en cada uno de los else.
+    })
+}; 
