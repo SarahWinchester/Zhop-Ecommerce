@@ -1,0 +1,48 @@
+/*font-family: 'Shadows Into Light', cursive;
+font-family: 'Amatic SC', cursive;
+font-family: 'Permanent Marker', cursive;*/
+body{
+    background-image: url(../css/assets/images/8edf5a0ab01d75147d7cd27d6c981635.png);
+    background-repeat: repeat;
+}
+.barBurger{
+    font-size: 1.5rem;
+}
+ .navbar-collapse{
+    color:  rgb(57, 239, 66);
+    font-size: 2rem;
+    font-family: 'Amatic SC', cursive;
+    text-shadow:5px 5px 5px black;
+ }
+ .fontnavbar{
+    font-size: 1.5rem;
+ }
+.headerBar{
+    height: 20vh;
+    background-image: url(../css/assets/images/zombie-shop-header-graphic2_orig.png);
+    background-size: 350px 90px;
+    background-repeat: no-repeat;
+    background-position: right;
+    border: 2px palevioletred solid;
+}
+/*DEBUG must add this to the navbar-collapse but, just in md and  mobile, using medias?*/
+.dropdown-item{
+    background-color: #3b0839b6
+}
+.dropdown-menu{
+    font-size: 1.3rem;
+}
+.searchbtn{
+    font-size: 1.2rem;
+}
+.imgAdapt{
+    height: 70vh;
+}
+.margincard{
+    margin-top: 10vh;
+}
+#carouselExampleControls{
+    width: 70vw;
+    margin: auto;
+
+}
