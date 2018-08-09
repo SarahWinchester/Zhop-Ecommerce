@@ -84,13 +84,12 @@
     <!--Cards-->
     <div class="itemContainer" id="itemsContainer"><!--Borrar todo el contenido dentro de este para meter el otro-->
         <div class="card margincard cardstyle" style="width: 18rem;">
-            <img class="card-img-top" src="css/assets/images/635765797582729582194945323_zombie.png" alt="Card image cap">
+            <img class="card-img-top" src="{{thumbnail}}" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">{{title}}</h5>
                 <!--Launch Demo Modal-->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                    Launch demo modal
+                    Detalles
                 </button>        
             </div>
         </div>
@@ -99,17 +98,35 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle ">{{title}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div class="row">
+                            <img class=" col-12"  src="{{thumbnail}}" alt="">
+                        </div>
+                        <div class="row itemsTitles">
+                            <span class="col-3">ID</span>
+                            <span class="col-3">State</span>
+                            <span class="col-3">Brand</span>
+                            <span class="col-3">Price</span>
+                        </div>
+                        <div class="row">
+                            <span class="col-3">{{id}}</span>
+                            <span class="col-3">{{where}}</span>
+                            <span class="col-3">{{brand}}</span>
+                            <span class="col-3">{{price}}</span>
+                        </div>
+                        <div class="row marginBtnsModal">
+                            <button class="btn btn-outline-success my-2 my-sm-0 searchbtn col-4 offset-1" id="search-btnModalAdd" type="button">Zhoping Cart</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0 searchbtn col-4 offset-1" id="search-btnBuy" type="button">Buy</button>
+
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
