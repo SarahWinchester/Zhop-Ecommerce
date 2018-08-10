@@ -167,43 +167,7 @@ function fillingCategory( responseCategory) {
         </div>
         </div>
         <!--Ends Card-->`
-        let mainModalBox = `<!-- Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle ">{{titleModal}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        </div>
-        <div class="modal-body">
-        <div class="row">
-        <img class=" col-3 offset-5"  src="{{thumbnailModal}}" alt="">
-        </div>
-        <div class="row itemsTitles">
-        <span class="col-3">ID</span>
-        <span class="col-3">Lugar de Origen</span>
-        <span class="col-3">Existencias</span>
-        <span class="col-3">Precio</span>
-        </div>
-        <div class="row">
-        <span class="col-3">{{idModal}}</span>
-        <span class="col-3">{{whereModal}}</span>
-        <span class="col-3">{{stockModal}}</span>
-        <span class="col-3">{{priceModal}}</span>
-        </div>
-        <div class="row marginBtnsModal">
-        <button class="btn btn-outline-success my-2 my-sm-0 searchbtn col-4 offset-1" id="search-btnModalAdd" type="button">Zhoping Cart</button>
-        <button class="btn btn-outline-success my-2 my-sm-0 searchbtn col-4 offset-1" id="search-btnBuy" type="button">Buy</button>
         
-        </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-        </div>`
         
         
         //used for a good control on replace
@@ -219,15 +183,16 @@ function fillingCategory( responseCategory) {
         let fillingTemplateCategories= principalTemplateCategories.replace("{{thumbnail}}", thumbnailCategories)
         .replace("{{title}}",titleCategories).replace("{{price}}", priceCategories);
         
-        let fillingTemplateCategoriesModal= mainModalBox.replace("{{thumbnailModal}}", thumbnailCategories)
-        .replace("{{titleModal}}", titleCategories)
-        .replace("{{idModal}}", idCategories )
-        .replace("{{whereModal}}",placeCategories)
-        .replace("{{stockModal}}",stockCategories)
-        .replace("{{priceModal}}", priceCategories);
         
+
         $("#itemsContainer").append(fillingTemplateCategories);
-        $("#itemsContainer").append(fillingTemplateCategoriesModal);
+
+        $("#idModal").html(idCategories);
+        $("#whereModal").html(placeCategories);
+        $("#stockModal").html(stockCategories);
+        $("#priceModal").html(priceCategories);
+        $("#exampleModalLongTitle").html(titleCategories);
+        
     }
 }
 ///////////////// SEARCH  EVENT ////////////////
@@ -240,7 +205,7 @@ $("#search-btn").click(function(){
 })
 
 
-// //Function for the API for the seach 
+// //Function for the API for the search
 function searchingRequest(inputSearchVal) { 
     console.log(inputSearchVal);
     
