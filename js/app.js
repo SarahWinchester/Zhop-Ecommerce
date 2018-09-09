@@ -3,7 +3,7 @@ TODO:
 
 [ ]passing this to React
 [ ]using handlebars
-[ ]using view
+[ ]using vue
 [ ] search a better api for  bring fotos or find the way 
 [ ] trying to make shopping cart 
 
@@ -16,13 +16,17 @@ FIXME:
 [ ] Use api for sandbox
 [X] use prices in the description Note:dont used.
 [ ]asking for home <a> redirect to mainShow function
-[ ] why isnt working searchin function
+[ ] why isnt working search function
 
 */
 
+$('#exampleModalLong').on('shown.bs.modal', function () {
+    $('#btnModal').trigger('focus')
+  })
+
 /////////////////////////MAIN , Callback, Templates/////////////////////
 
-$( document ).ready(function mainShow() { //make this function the first one on load
+$(document).ready(function mainShow() { //make this function the first one on load
     let getMainShow = "https://api.mercadolibre.com/sites/MLM/search?q=moda_alternativa";
     $.ajax({
         url: getMainShow,
@@ -47,18 +51,18 @@ $( document ).ready(function mainShow() { //make this function the first one on 
                 <div class="card-body">
                 <h5 class="card-title">{{title}}</h5>                    
                 <!--Launch Demo Modal-->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                <button type="button" id="btnModal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong{{id}}">
                 Detalles
                 </button>        
                 </div>
                 </div>
                 <!--Ends Card-->`
                 let mainModalBox = `<!-- Modal -->
-                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModalLong{{idModal}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle ">{{titleModal}}</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle{{idModal}} ">{{titleModal}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -93,17 +97,17 @@ $( document ).ready(function mainShow() { //make this function the first one on 
                 
                 
                 //used for a good control on replace
-                
+                let idMain= responseMain.result[i].id;
                 let titleMain = responseMain.results[i].title;
                 let thumbnailMain= responseMain.results[i].thumbnail;
-                let idMain = responseMain.results[i].id;
+                // let idModal = responseMain.results[i].id;
                 let priceMain= responseMain.results[i].price;
                 let placeMain= responseMain.results[i].address.state_name;
                 let stockMain= responseMain.results[i].available_quantity;
                 
                 
                 let fillingTemplateMain= principalTemplateMain.replace("{{thumbnail}}", thumbnailMain)
-                .replace("{{title}}",titleMain).replace("{{price}}}", priceMain);
+                .replace("{{title}}",titleMain).replace("{{price}}}", priceMain).replace("{{id}}",idMain);
                 
                 let fillingTemplateModal= mainModalBox.replace("{{thumbnailModal}}", thumbnailMain)
                 .replace("{{titleModal}}", titleMain)
@@ -119,7 +123,7 @@ $( document ).ready(function mainShow() { //make this function the first one on 
                 
             }                   
         }    
-        // fillingMain(responseMain);  
+        fillingMain(responseMain);  
     })
 }); 
 
@@ -156,7 +160,7 @@ function categoryRequest(categorySelected) {
 }; 
 function fillingCategory( responseCategory) {
     for (let i = 0; i < (responseCategory.results).length; i++) {
-        let principalTemplateCategories=` <!--Cards--> <div class="card margincard cardstyle d-inline-block" style="width: 15rem;">
+        let principalTemplateCategories=` <!--Cards--> <div class="card margincard cardstyle col-sm-8 offset-sm-1 d-inline-block" style="width: 15rem;">
         <img class="card-img-top" src="{{thumbnail}}" alt="Card image cap">
         <div class="card-body">
         <h5 class="card-title">{{title}}</h5>                    
@@ -184,9 +188,9 @@ function fillingCategory( responseCategory) {
         .replace("{{title}}",titleCategories).replace("{{price}}", priceCategories);
         
         
-
+        
         $("#itemsContainer").append(fillingTemplateCategories);
-
+        
         $("#idModal").html(idCategories);
         $("#whereModal").html(placeCategories);
         $("#stockModal").html(stockCategories);
@@ -233,7 +237,7 @@ function searchingRequestFill(responseSearch){
     for(let i = 0 ; i < (responseSearch.results).length; i+=1){
         console.log(i);
         console.log(responseSearch.results);
-
+        
         let principalTemplateSearch=` <!--Cards--> <div class="card margincard cardstyle d-inline-block" style="width: 15rem;">
         <img class="card-img-top" src="{{thumbnail}}" alt="Card image cap">
         <div class="card-body">
@@ -257,17 +261,36 @@ function searchingRequestFill(responseSearch){
         let stockSearch= responseSearch.results[i].available_quantity;
         
         
+        // let fillingTemplateSearch= principalTemplateSearch.replace("{{thumbnail}}", thumbnailSearch)
+        // .replace("{{title}}",titleSearch).replace("{{price}}", priceSearch);
+        // $('#exampleModalLong').on('shown.bs.modal', function () {
+        //     $('#btnModal').trigger('focus')
+        //     $("#idModal").html(idSearch);
+        //     $("#whereModal").html(placeSearch);
+        //     $("#stockModal").html(stockSearch);
+        //     $("#priceModal").html(priceSearch);
+        //     $("#exampleModalLongTitle").html(titleSearch);
+        
+        
+        //   })
         let fillingTemplateSearch= principalTemplateSearch.replace("{{thumbnail}}", thumbnailSearch)
         .replace("{{title}}",titleSearch).replace("{{price}}", priceSearch);
         
-        $("#idModal").html(idSearch);
-        $("#whereModal").html(placeSearch);
-        $("#stockModal").html(stockSearch);
-        $("#priceModal").html(priceSearch);
-        $("#exampleModalLongTitle").html(titleSearch);
-        
         
         $("#itemsContainer").append(fillingTemplateSearch);
+        
+        $('#exampleModalLong').on('shown.bs.modal', function () {
+            $('#btnModal').trigger('focus')
+            $("#idModal").html(idSearch);
+            $("#whereModal").html(placeSearch);
+            $("#stockModal").html(stockSearch);
+            $("#priceModal").html(priceSearch);
+            $("#exampleModalLongTitle").html(titleSearch);
+            
+            
+        })
+        
+        
     }                   
     
 };        
